@@ -25,3 +25,14 @@ fatalities_by_region <- gtd_clean %>%
 # Print the results
 print(fatalities_by_region)
 
+# Visualization (Ravleen)
+# Bar chart of total fatalities by region
+ggplot(fatalities_by_region, 
+  aes(x = reorder(region_txt, -total_fatalities),
+      y = total_fatalities)) +
+    geom_bar(stat = "identity", fill = "red") +
+    labs(title = "Total Fatalities by Region",
+        x = "Region",
+        y = "Total Fatalities") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
