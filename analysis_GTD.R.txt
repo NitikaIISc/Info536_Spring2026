@@ -10,3 +10,18 @@ gtd_data <- read.csv("globalterrorismdb_0718dist.csv",
 
 # Basic data exploration
 glimpse(gtd_data)
+
+# ---- Data Wrangling (Yash) ----
+gtd_clean <- gtd_data %>%
+  filter(!is.na(region_txt), !is.na(nkill))
+
+# ---- Analysis (Yash) ----
+# Calculate total fatalities per region
+fatalities_by_region <- gtd_clean %>%
+  group_by(region_txt) %>%
+  summarise(total_fatalities = sum(nkill, na.rm = TRUE)) %>%
+  arrange(desc(total_fatalities))
+
+# Print the results
+print(fatalities_by_region)
+
